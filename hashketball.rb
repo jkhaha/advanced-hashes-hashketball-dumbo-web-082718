@@ -122,15 +122,16 @@ def num_points_scored(player_name)
   end
 end
 
-
 def shoe_size(player_name)
+  shoe_size = nil
   game_hash.each do |location, data|
-   game_hash[location][:players].each do |player, stats|
-      if player == player_name
-        return stats[:shoe]
+   game_hash[location][:players].each do |player|
+      if player[:player_name] == player_name
+        shoe_size = player[:shoe]
       end
     end
   end
+  shoe_size
 end
 
 def team_colors(team)
@@ -180,3 +181,18 @@ end
 # I can't figure out how to test it properly with pry.... 
 
 binding.pry
+
+
+array = ["one","two","three","four"]
+  array2
+  array.collect do |number|
+    "#{number}s"
+  end
+
+
+
+
+
+
+
+
