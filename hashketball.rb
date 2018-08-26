@@ -151,9 +151,9 @@ end
 
 def player_numbers(team)
   number_ary = ["empty"]
-  game_hash.flat_map do |location, team_data|
-    if team_data[:team_name] == team
-      team_data.collect do |attribute, data|
+  game_hash.flat_map do |location, data|
+    if data[:team_name] == team
+      data.collect do |attribute, data|
         if attribute == :players
           number_ary = data.collect {|player, plyr_stats| plyr_stats[:number]}
         end
