@@ -165,13 +165,18 @@ def player_numbers(team)
 end
 
 def player_stats(name)
-  game_hash.each do |location, data|
-    game_hash[location][:players].each do |player, stats|
-      if player == name
-        return stats
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players
+        data.each do |player, plyr_stats|
+          if player == name
+            return plyr_stats
+          end
+        end
       end
     end
   end
+  nil
 end
 
 # first find player with largest foot shoe_size
