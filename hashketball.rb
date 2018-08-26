@@ -114,10 +114,11 @@ end
 # location = home or away
 def num_points_scored(player_name)
   game_hash.each do |location, data|
-    
-    game_hash[location][:players].each do |player, stats|
-      if player == name
-        return stats[:points]
+    data.each do |attribute, data|
+      if attribute == :players
+        data.each do |player, stats|
+          if player ==  player_name
+            return stats[:points]
       end 
     end
   end
@@ -137,30 +138,20 @@ end
 
 def team_colors(team)
   game_hash.each do |location, data|
-    if game_hash[location][:team_name] == team
-      return game_hash[location][:colors]
+    if data[:team_name] == team
+      return data[:colors]
     end
   end
 end 
 
 def team_names
-  array = []
-    names << game_hash[:home][:team_name]
-    names << game_hash[:away][:team_name]
-  array
+  game_hash.collect do |location, data|
+    data[:team_name]
+  end
 end
 
 def player_numbers(team)
-  array = []
-  game_hash.each do |location, data|
-    if game_hash[location][:team_name] == team_name
-      game_hash[location][:players].each do |player,stats|
-        array << stats[:number]
-      end
-    end
-  end
-  numbers 
-end
+
 
 def player_stats(name)
   game_hash.each do |location, data|
