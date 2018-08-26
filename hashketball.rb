@@ -164,8 +164,8 @@ def player_numbers(team)
 end
 
 def player_stats(name)
-  game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
+  game_hash.each do |location, data|
+    data.each do |attribute, data|
       if attribute == :players
         data.each do |player, plyr_stats|
           if player == name
@@ -180,8 +180,8 @@ end
 
 def big_shoe_rebounds
   biggest_player = ["Nobody",{shoe: 0}] #stand-in for initial #inject memo
-  game_hash.each do |location, team_data|
-    team_data.each do |attribute, data|
+  game_hash.each do |location, data|
+    data.each do |attribute, data|
       if attribute == :players
         biggest_player = data.inject(biggest_player) do |temp_biggest, plyr_stats|
           plyr_stats[1][:shoe] > temp_biggest[1][:shoe] ? plyr_stats : temp_biggest
@@ -191,11 +191,3 @@ def big_shoe_rebounds
   end
   biggest_player[1][:rebounds]
 end
-
-
-
-
-
-
-
-
