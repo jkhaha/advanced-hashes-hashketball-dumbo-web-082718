@@ -114,6 +114,7 @@ end
 # location = home or away
 def num_points_scored(player_name)
   game_hash.each do |location, data|
+    
     game_hash[location][:players].each do |player, stats|
       if player == name
         return stats[:points]
