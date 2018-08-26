@@ -1,5 +1,4 @@
 # Write your code here!
-require 'pry'
 
 def game_hash
   hash = {
@@ -179,23 +178,19 @@ def player_stats(name)
   nil
 end
 
-# first find player with largest foot shoe_size
-# then return that player's no. of rebounds
 def big_shoe_rebounds
-  
-end
-# wat 
-# I don't know if my code works but my phone call is tomorrow so I am submitting what I have! 
-# I can't figure out how to test it properly with pry.... 
-
-binding.pry
-
-
-array = ["one","two","three","four"]
-  array2
-  array.collect do |number|
-    "#{number}s"
+  biggest_player = ["Nobody",{shoe: 0}] #stand-in for initial #inject memo
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+      if attribute == :players
+        biggest_player = data.inject(biggest_player) do |temp_biggest, plyr_stats|
+          plyr_stats[1][:shoe] > temp_biggest[1][:shoe] ? plyr_stats : temp_biggest
+        end
+      end
+    end
   end
+  biggest_player[1][:rebounds]
+end
 
 
 
